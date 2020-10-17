@@ -1,4 +1,4 @@
-﻿package ru.bstu.lab1;
+package ru.bstu.lab1;
 
 import ru.shop.Shop;
 import ru.shop.product.Product;
