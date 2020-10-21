@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Product> store = new ArrayList<>();
-        HashMap<String, Class> classes = Shop.getClasses();
+        HashMap<String, Class<? extends Product>> classes = Shop.getClasses();
 
         System.out.print("Введите количество товаров : ");
         int n = scanner.nextInt();
@@ -24,7 +24,7 @@ public class Main {
             String productType = scanner.next();
 
             try {
-                Product newProduct = ((Class<Product>) classes.get(productType)).newInstance();
+                Product newProduct = classes.get(productType).newInstance();
                 newProduct.init(scanner);
                 store.add(newProduct);
             } catch (Throwable e) {
