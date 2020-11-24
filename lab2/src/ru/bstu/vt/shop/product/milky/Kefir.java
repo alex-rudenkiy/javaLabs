@@ -24,17 +24,17 @@ public class Kefir extends Milky{
     @Override
     public void init(@NonNull Scanner scanner) {
 
-
         System.out.println("Ввод товара КЕФИР:\n\t* Пример ввода: цена = 68, спирт = 1.5, добавка = злаки *");
 
         while (additive==null) {
             String s = "";
             while (s.length()<1) s = scanner.nextLine();
             try {
-                HashMap hm = RegxLib.parseParametrs(s);
-                super.cost = Float.parseFloat((String) hm.get("цена"));
-                alcohol = Float.parseFloat((String) hm.get("спирт"));
-                additive = (String) hm.get("добавка");
+
+                HashMap hm  = RegxLib.parseParametrs(s);
+                super.cost  = Float.parseFloat((String) hm.get("цена"));
+                alcohol     = Float.parseFloat((String) hm.get("спирт"));
+                additive    = (String) hm.get("добавка");
 
                 if(additive==null) throw new RequiredParameterException();
 

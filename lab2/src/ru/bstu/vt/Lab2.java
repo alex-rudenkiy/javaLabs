@@ -27,6 +27,8 @@ public class Lab2 {
 
 
 
+
+
         int n = -1;
         System.out.print("Введите количество товаров : ");
 
@@ -36,6 +38,8 @@ public class Lab2 {
         }catch(Exception e){
             System.out.println("Вам необходимо ввести целое число, попробуйте заново!");
         }
+
+
 
 
 

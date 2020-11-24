@@ -7,6 +7,7 @@ import ru.bstu.vt.shop.product.technics.Camera;
 import ru.bstu.vt.shop.product.technics.Notebook;
 import ru.bstu.vt.shop.product.toy.Lego;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -18,19 +19,11 @@ public enum Shop {
         this.code = code;
     }
 
-    public Product getCode() throws IllegalAccessException, InstantiationException {
-        return code.newInstance();
+    public Product getCode() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        return code.getConstructor().newInstance();
     }
 
     public static String print(){
-        String s = "";
-
-        String r = Arrays.stream(Shop.values()).map(e -> "* "+ e.name()).collect(Collectors.joining("\n")).toString();
-
-
-
-//        for(Shop e : Shop.values())
-//            s += "* "+ e.name()+"\n";
-        return r;
+        return Arrays.stream(Shop.values()).map(e -> "* "+ e.name()).collect(Collectors.joining("\n"));
     }
 }

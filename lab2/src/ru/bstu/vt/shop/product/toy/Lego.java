@@ -24,9 +24,11 @@ public class Lego extends Toy {
             String s = "";
             while (s.length()<1) s = scanner.nextLine();
             try {
-                HashMap hm = RegxLib.parseParametrs(s);
-                super.cost = Float.parseFloat((String) hm.get("цена"));
+
+                HashMap hm      = RegxLib.parseParametrs(s);
+                super.cost      = Float.parseFloat((String) hm.get("цена"));
                 numberOfFigures = Integer.parseInt((String) hm.get("фигур"));
+
             } catch (NumberFormatException e){
                 System.out.println("\tВы не корректно указали цену или кол-во фигур! Попробуйте ввести сведения о продукте заново.");
             } catch (Throwable e){

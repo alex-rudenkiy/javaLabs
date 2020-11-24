@@ -31,14 +31,14 @@ public class Notebook extends Technics {
             String s = "";
             while (s.length()<1) s = scanner.nextLine();
             try {
-                HashMap hm = RegxLib.parseParametrs(s);
-                super.cost = Float.parseFloat((String) hm.get("цена"));
-                ramSize = Integer.parseInt((String) hm.get("ram"));
-                hddSize = Integer.parseInt((String) hm.get("hdd"));
-                os = (String) hm.get("os");
+
+                HashMap hm  = RegxLib.parseParametrs(s);
+                super.cost  = Float.parseFloat((String) hm.get("цена"));
+                ramSize     = Integer.parseInt((String) hm.get("ram"));
+                hddSize     = Integer.parseInt((String) hm.get("hdd"));
+                os          = (String) hm.get("os");
 
                 if(os==null) throw new RequiredParameterException();
-
 
             } catch (NumberFormatException e){
                 System.out.println("\tВы не корректно указали цену, ram или hdd! Попробуйте ввести сведения о продукте заново.");

@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 //Класс камера
 @EqualsAndHashCode(callSuper = true)
+@ToString
 public class Camera extends Technics {
 
     @Getter
@@ -27,12 +28,11 @@ public class Camera extends Technics {
             String s = "";
             while (s.length()<1) s = scanner.nextLine();
             try {
-                HashMap hm = RegxLib.parseParametrs(s);
-                super.cost = Float.parseFloat((String) hm.get("цена"));
-                matrix = Float.parseFloat((String) hm.get("матрица"));
-                zoom = Integer.parseInt((String) hm.get("зум"));
 
-
+                HashMap hm  = RegxLib.parseParametrs(s);
+                super.cost  = Float.parseFloat((String) hm.get("цена"));
+                matrix      = Float.parseFloat((String) hm.get("матрица"));
+                zoom        = Integer.parseInt((String) hm.get("зум"));
 
             } catch (NumberFormatException e){
                 System.out.println("\tВы не корректно указали цену, матрицу или зум! Попробуйте ввести сведения о продукте заново.");

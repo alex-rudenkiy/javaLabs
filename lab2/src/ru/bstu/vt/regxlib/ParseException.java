@@ -2,9 +2,7 @@ package ru.bstu.vt.regxlib;
 
 public class ParseException extends Exception
 {
-    public ParseException() {}
-
-    public ParseException(String message)
+    ParseException(String message)
     {
         super(message);
     }
