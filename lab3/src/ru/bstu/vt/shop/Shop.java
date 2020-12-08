@@ -69,7 +69,7 @@ public enum Shop {
                 for (int i = 0; i < values.length; i++)
                     hm.put(headers.get(i), values[i]);
 
-                Thread.sleep(5000+new Random().nextInt(1000 - 500 ) + 500);
+                Thread.sleep(5000+new Random().nextInt(1500 ));
 
                 synchronized(store) {
                     store.add(productClass.getDeclaredConstructor().newInstance().init(hm)); //... и закидываем каждый новый продукт в store.

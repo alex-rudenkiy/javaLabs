@@ -27,9 +27,7 @@ public class Lab3 {
                             try {
                                 if (e.getFileName().toString().contains(".csv"))
                                     Shop.asyncReadFromCSVFile(e.toAbsolutePath().toString(), store, Shop.valueOf(e.getFileName().toString().replace(".csv", "").toUpperCase()).getCode().getClass());
-                            } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e1) {
-                                e1.printStackTrace();
-                            }
+                            } catch (Exception ignored) {}
                         });
             } catch (Exception ignored){};
         }
@@ -58,11 +56,11 @@ public class Lab3 {
         System.out.print("Введите количество товаров : ");
 
         while (n==-1) //Цикл который обеспечивает ввод N до тех пор, пока не будет введено число
-        try {
-            n = Integer.parseInt(scanner.next());
-        }catch(Exception e){
-            System.out.println("Вам необходимо ввести целое число, попробуйте заново!");
-        }
+            try {
+                n = Integer.parseInt(scanner.next());
+            }catch(Exception e){
+                System.out.println("Вам необходимо ввести целое число, попробуйте заново!");
+            }
 
 
 
