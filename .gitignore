@@ -1,6 +1,7 @@
 
 .idea/workspace.xml
-*.xml
+.idea
 lab1/.idea/description.html
 lab1/javaLabs.iml
 lab1/out/
+\target
