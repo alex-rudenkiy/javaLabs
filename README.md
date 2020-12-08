@@ -2,9 +2,7 @@
 
  - [Лабораторная работа №1](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab1) (Сдано ✅)
  - [Лабораторная работа №2](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab2) (Не сдано ❌)
- - Лабораторная работа №3 (Не сдано ❌)
- - Лабораторная работа №4 (Не сдано ❌)
- - Лабораторная работа №4 (Не сдано ❌)
+ - [Лабораторная работа №3/4/5](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab3) (Не сдано ❌)
  - Курсовая работа (Не сдано ❌)
 
 **Формулировка задания (8 вариант):**
