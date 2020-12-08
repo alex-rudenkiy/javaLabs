@@ -33,7 +33,8 @@ public enum Shop {
 
 
 
-    static public void saveToTxtFile(String str, ArrayList<Product> store) throws IOException, IllegalAccessException, InstantiationException, InterruptedException, NoSuchMethodException, InvocationTargetException {
+    static public void saveToTxtFile(String str, ArrayList<Product> store) throws IOException {
+
 
         try (BufferedWriter br = new BufferedWriter(new FileWriter(str))) {
 
@@ -69,19 +70,27 @@ public enum Shop {
                 for (int i = 0; i < values.length; i++)
                     hm.put(headers.get(i), values[i]);
 
+
                 Thread.sleep(5000+new Random().nextInt(1500 ));
+
 
                 synchronized(store) {
                     store.add(productClass.getDeclaredConstructor().newInstance().init(hm)); //... и закидываем каждый новый продукт в store.
                 }
 
-                log.info(String.format("Товар %s загружен из файла (Store состоит из %d элементов).",productClass.getCanonicalName(),store.size()));
+                log.info(
+                        String.format(
+                                "Товар %s загружен из файла (Store состоит из %d элементов).",
+                                productClass.getCanonicalName(),store.size()
+                        )
+                );
 
             }
         }
     }
 
     static public void asyncReadFromCSVFile(String str, ArrayList<Product> store, Class<? extends Product> productClass) {
+
 
         CompletableFuture.runAsync(() -> {
             try {

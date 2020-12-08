@@ -5,7 +5,6 @@ import ru.bstu.vt.shop.Shop;
 import ru.bstu.vt.shop.product.Product;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,7 +32,7 @@ public class Lab3 {
         }
     }
 
-    public static void main(String[] args) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         ArrayList<Product>   store   = new ArrayList<>();
         Scanner              scanner = new Scanner(System.in);
 
@@ -55,7 +54,7 @@ public class Lab3 {
         int n = -1;
         System.out.print("Введите количество товаров : ");
 
-        while (n==-1) //Цикл который обеспечивает ввод N до тех пор, пока не будет введено число
+        while (n==-1)  //Цикл который обеспечивает ввод N до тех пор, пока не будет введено число
             try {
                 n = Integer.parseInt(scanner.next());
             }catch(Exception e){
