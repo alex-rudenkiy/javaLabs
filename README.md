@@ -1,4 +1,4 @@
-# Курс Java
+# Курс Java ☕
 
  - [Лабораторная работа № 1](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab1)     (Сдано    ✅)
  - [Лабораторная работа № 2](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab2)     (Не сдано ❌)
