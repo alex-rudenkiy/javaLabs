@@ -9,7 +9,7 @@
    * Добавил пользовательские Exception'ы [вот](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/shop/product/RequiredParameterException.java) и [вот](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/regxlib/ParseException.java);
    * Переделал на коллекцию `ArrayList<Product>` в [main'е](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/Lab2.java).
  - [Лабораторная работа № 3/4/5](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab3) (Не сдано ❌)
-   * Добавлена многопоточность в модуле [Shop.asyncReadFromCSVFile](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab3/src/ru/bstu/vt/shop/Shop.java); 
+   * Добавлена многопоточность, см. [Shop.asyncReadFromCSVFile](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab3/src/ru/bstu/vt/shop/Shop.java); 
    * Добавлены JAVA8 фичи, такие как: `forEach()`, Lambda Expressions, `Files.walk`, `CompletableFuture`(Concurrency API);
    * Добавлен потоковый ввод/вывод в файл через `BufferedReader` в функции [Shop.readFromCSVFile](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab3/src/ru/bstu/vt/shop/Shop.java) и [main](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab3/src/ru/bstu/vt/Lab3.java) (для сохранения).
  
