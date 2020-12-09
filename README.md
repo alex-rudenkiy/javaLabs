@@ -3,9 +3,10 @@
  - [Лабораторная работа № 1](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab1)     (Сдано    ✅)
  - [Лабораторная работа № 2](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab2)     (Не сдано ❌)
    * Переписал с использованием [Enum](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/shop/Shop.java);
-   * Добавил [RegExp'ы](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/regxlib/RegxLib.java);
+   * Добавил Lombok: [@EqualsAndHashCode](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/shop/product/technics/Camera.java), [@ToString](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/shop/product/technics/Camera.java), [@Getter](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/shop/product/technics/Camera.java), [@Setter](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/shop/product/technics/Camera.java), [@NonNull](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/shop/product/technics/Camera.java), [@Log](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab3/src/ru/bstu/vt/shop/Shop.java)
+   * Добавил [RegExp](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/regxlib/RegxLib.java);
    * Добавил пользовательские Exception'ы [вот](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/shop/product/RequiredParameterException.java) и [вот](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/regxlib/ParseException.java);
-   * Использовал коллекцию ArrayList<Product> в [main'е](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/Lab2.java).
+   * Переделал на коллекцию ArrayList<Product> в [main'е](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab2/src/ru/bstu/vt/Lab2.java).
  - [Лабораторная работа № 3/4/5](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab3) (Не сдано ❌)
    * Добавлена многопоточность в модуле [Shop.asyncReadFromCSVFile](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab3/src/ru/bstu/vt/shop/Shop.java); 
    * Добавлены JAVA8 фичи, такие как: forEach(), Lambda Expressions, Files.walk, CompletableFuture(Concurrency API);
