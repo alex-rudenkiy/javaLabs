@@ -10,7 +10,7 @@ public class RegxLib {
     public static HashMap parseParametrs(String s) throws ParseException {
         HashMap<String, String> result = new HashMap<>();
         Pattern p = Pattern.compile("([^,]+)");
-        Matcher m = p.matcher(s);   // get a matcher object
+        Matcher m = p.matcher(s);
         int count = 0;
         while(m.find()) {
             count++;
