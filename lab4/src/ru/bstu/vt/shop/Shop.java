@@ -11,8 +11,7 @@ import ru.bstu.vt.shop.product.toy.Lego;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 @Log
@@ -33,12 +32,14 @@ public enum Shop {
         return Arrays.stream(Shop.values()).map(e -> "* " + e.name()).collect(Collectors.joining("\n"));
     }
 
-    static public void saveToTxtFile(String str, ArrayList<Product> store) throws IOException {
+    static public void saveToTxtFile(String str, List<Product> store) throws IOException {
 
         try (BufferedWriter br = new BufferedWriter(new FileWriter(str))) {
+            CopyOnWriteArrayList<Product> list = new CopyOnWriteArrayList<>(store);
 
-            for (Product p : store)
-                br.write(p.toString() + "\n");
+            for ( Iterator i = list.iterator(); i.hasNext(); )
+                br.write(i.next().toString() + "\n");
+
             br.close();
 
             log.info("Экспорт Store в файл успешно завершён!");
@@ -64,7 +65,7 @@ public enum Shop {
                 for (int i = 0; i < values.length; i++)
                     hm.put(headers.get(i), values[i]);
 
-                Thread.sleep(5000 + new Random().nextInt(1500));
+                Thread.sleep(3000 + new Random().nextInt(3000));
 
 
                 store.add(productClass.getDeclaredConstructor().newInstance().init(hm)); //... и закидываем каждый новый продукт в store.
@@ -81,20 +82,21 @@ public enum Shop {
         }
     }
 
-    static public void asyncReadFromCSVFile(String str, ArrayList<Product> store, Class<? extends Product> productClass) {
+    static public Callable<Boolean> asyncReadFromCSVFile(String str, ArrayList<Product> store, Class<? extends Product> productClass) {
 
-        Runnable task = new Runnable() {
-            public void run() {
+        Callable<Boolean> task = new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
                 try {
                     readFromCSVFile(str, store, productClass);
                 } catch (IOException | IllegalAccessException | InterruptedException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
+                return true;
             }
         };
-        Thread thread = new Thread(task);
-        thread.start();
 
+        return task;
     }
 
     public static class PriceCounter {
@@ -103,13 +105,17 @@ public enum Shop {
 
         public PriceCounter(ArrayList<Product> store) {
             CompletableFuture.runAsync(() -> {
-                while (true)
-                    store.stream().max(Comparator.comparingDouble(Product::getCost)).ifPresent(product -> mostExpensive = product);
-
+                while (true) {
+                    try {
+                        store.sort(Comparator.comparingDouble(Product::getCost));
+                        if(store.size()>0)
+                            mostExpensive = store.get(store.size() - 1);
+                    }catch (Exception ignored) {}
+                }
             });
         }
 
-        public Product getMostExpensiveProduct() throws ExecutionException, InterruptedException {
+        public Product getMostExpensiveProduct(){
             return mostExpensive;
         }
     }
