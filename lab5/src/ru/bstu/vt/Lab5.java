@@ -4,7 +4,6 @@ import lombok.extern.java.Log;
 import ru.bstu.vt.shop.Shop;
 import ru.bstu.vt.shop.product.Product;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,25 +14,29 @@ import java.util.stream.Stream;
 
 
 @Log
-public class Lab3 {
+public class Lab5 {
 
-    private static void loadProductsFromFolder(Scanner scanner, ArrayList<Product> store) throws IOException {
+    public static void loadProductsFromFolder(Scanner scanner, ArrayList<Product> store) throws IOException {
         System.out.println("Введите путь к папке с данными продуктов (.csv): ");
         String dir = scanner.nextLine();
-        if(!dir.equals(""))
-            for (File file : new File(dir).listFiles())
-                if (file.isFile())
-                    try {
-                        if (file.getName().contains(".csv"))
-                            Shop.readFromCSVFile(file.getAbsolutePath(), store, Shop.valueOf(file.getName().replace(".csv", "").toUpperCase()).getCode().getClass());
-                    } catch (Exception ignored) {}
-
+        if(!dir.equals("")) {
+            try (Stream<Path> paths = Files.walk(Paths.get(dir))) {
+                paths
+                        .filter(Files::isRegularFile)
+                        .forEach(e -> {
+                            try {
+                                if (e.getFileName().toString().contains(".csv"))
+                                    Shop.asyncReadFromCSVFile(e.toAbsolutePath().toString(), store, Shop.valueOf(e.getFileName().toString().replace(".csv", "").toUpperCase()).getCode().getClass());
+                            } catch (Exception ignored) {}
+                        });
+            } catch (Exception ignored){};
+        }
     }
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         ArrayList<Product>   store   = new ArrayList<>();
         Scanner              scanner = new Scanner(System.in);
-
+        Shop.PriceCounter priceCounter = new Shop.PriceCounter(store);
 
         loadProductsFromFolder(scanner, store);
 
@@ -89,7 +92,7 @@ public class Lab3 {
 
         System.out.println("\n\nЖелаете ли вы вывести самый дорогой товар на экран? (да/нет) :");
         if(scanner.next().toLowerCase().equals("да"))
-            System.out.format("\n\nСамый дорогой товар это :\n%s",store.stream().max(Comparator.comparingDouble(Product::getCost)).get().toString());
+            System.out.format("\n\nСамый дорогой товар это :\n%s",priceCounter.getMostExpensiveProduct().toString());
 
 
         System.out.println("\n\nЖелаете ли вы сохранить Store в файл? (да/нет) :");

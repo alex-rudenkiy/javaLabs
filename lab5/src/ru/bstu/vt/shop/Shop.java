@@ -35,11 +35,16 @@ public enum Shop {
 
     static public void saveToTxtFile(String str, ArrayList<Product> store) throws IOException {
 
+
         try (BufferedWriter br = new BufferedWriter(new FileWriter(str))) {
 
-            for (Product p : store)
-                br.write(p.toString() + "\n");
-            br.close();
+            synchronized (store) {
+                for (Product p : store) {
+                    //Thread.sleep(5000+new Random().nextInt(1000 - 500 ) + 500);
+                    br.write(p.toString() + "\n");
+                }
+                br.close();
+            }
 
             log.info("Экспорт Store в файл успешно завершён!");
         }
@@ -65,6 +70,9 @@ public enum Shop {
                     hm.put(headers.get(i), values[i]);
 
 
+                Thread.sleep(5000 + new Random().nextInt(1500));
+
+
                 store.add(productClass.getDeclaredConstructor().newInstance().init(hm)); //... и закидываем каждый новый продукт в store.
 
 
@@ -76,6 +84,36 @@ public enum Shop {
                 );
 
             }
+        }
+    }
+
+    static public void asyncReadFromCSVFile(String str, ArrayList<Product> store, Class<? extends Product> productClass) {
+
+
+        CompletableFuture.runAsync(() -> {
+            try {
+                readFromCSVFile(str, store, productClass);
+            } catch (IOException | IllegalAccessException | InterruptedException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+    public static class PriceCounter {
+        private ArrayList<Product> store;
+        private Product mostExpensive;
+
+        public PriceCounter(ArrayList<Product> store) {
+            CompletableFuture.runAsync(() -> {
+                while (true)
+                    store.stream().max(Comparator.comparingDouble(Product::getCost)).ifPresent(product -> mostExpensive = product);
+
+            });
+        }
+
+        public Product getMostExpensiveProduct() throws ExecutionException, InterruptedException {
+            return mostExpensive;
         }
     }
 }

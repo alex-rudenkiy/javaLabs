@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 
 @Log
-public class Lab3 {
+public class Lab4 {
 
     private static void loadProductsFromFolder(Scanner scanner, ArrayList<Product> store) throws IOException {
         System.out.println("Введите путь к папке с данными продуктов (.csv): ");
@@ -25,7 +25,7 @@ public class Lab3 {
                 if (file.isFile())
                     try {
                         if (file.getName().contains(".csv"))
-                            Shop.readFromCSVFile(file.getAbsolutePath(), store, Shop.valueOf(file.getName().replace(".csv", "").toUpperCase()).getCode().getClass());
+                            Shop.asyncReadFromCSVFile(file.getAbsolutePath(), store, Shop.valueOf(file.getName().replace(".csv", "").toUpperCase()).getCode().getClass());
                     } catch (Exception ignored) {}
 
     }
@@ -33,6 +33,7 @@ public class Lab3 {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         ArrayList<Product>   store   = new ArrayList<>();
         Scanner              scanner = new Scanner(System.in);
+        Shop.PriceCounter priceCounter = new Shop.PriceCounter(store);
 
 
         loadProductsFromFolder(scanner, store);
@@ -89,7 +90,7 @@ public class Lab3 {
 
         System.out.println("\n\nЖелаете ли вы вывести самый дорогой товар на экран? (да/нет) :");
         if(scanner.next().toLowerCase().equals("да"))
-            System.out.format("\n\nСамый дорогой товар это :\n%s",store.stream().max(Comparator.comparingDouble(Product::getCost)).get().toString());
+            System.out.format("\n\nСамый дорогой товар это :\n%s",priceCounter.getMostExpensiveProduct().toString());
 
 
         System.out.println("\n\nЖелаете ли вы сохранить Store в файл? (да/нет) :");

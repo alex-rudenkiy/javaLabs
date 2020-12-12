@@ -64,6 +64,8 @@ public enum Shop {
                 for (int i = 0; i < values.length; i++)
                     hm.put(headers.get(i), values[i]);
 
+                Thread.sleep(5000 + new Random().nextInt(1500));
+
 
                 store.add(productClass.getDeclaredConstructor().newInstance().init(hm)); //... и закидываем каждый новый продукт в store.
 
@@ -76,6 +78,39 @@ public enum Shop {
                 );
 
             }
+        }
+    }
+
+    static public void asyncReadFromCSVFile(String str, ArrayList<Product> store, Class<? extends Product> productClass) {
+
+        Runnable task = new Runnable() {
+            public void run() {
+                try {
+                    readFromCSVFile(str, store, productClass);
+                } catch (IOException | IllegalAccessException | InterruptedException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
+
+    }
+
+    public static class PriceCounter {
+        private ArrayList<Product> store;
+        private Product mostExpensive;
+
+        public PriceCounter(ArrayList<Product> store) {
+            CompletableFuture.runAsync(() -> {
+                while (true)
+                    store.stream().max(Comparator.comparingDouble(Product::getCost)).ifPresent(product -> mostExpensive = product);
+
+            });
+        }
+
+        public Product getMostExpensiveProduct() throws ExecutionException, InterruptedException {
+            return mostExpensive;
         }
     }
 }
