@@ -1,0 +1,58 @@
+package com.bstu.cloudserver.controller;
+
+import com.bstu.cloudserver.models.Session.SessionJPA;
+import com.bstu.cloudserver.models.Client.Client;
+import com.bstu.cloudserver.models.Client.ClientJPA;
+import io.minio.MinioClient;
+import io.minio.UploadObjectArgs;
+import io.minio.errors.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+@Controller
+public class Api {
+    @Autowired
+    private ApplicationContext appContext;
+    final UserJPA userJPA = appContext.getBean(UserJPA.class);
+    final SessionJPA sessionJPA = appContext.getBean(SessionJPA.class);
+
+
+    @RequestMapping(value = "/r1", method = RequestMethod.GET)
+    @ResponseBody
+    public String r1() throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, ErrorResponseException {
+        MinioClient minioClient =
+                MinioClient.builder()
+                        .endpoint("http://127.0.0.1:9000")
+                        .credentials("AKIAIOSFODNN7EXAMPLE", "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY")
+                        .build();
+/*
+        minioClient.makeBucket(
+                MakeBucketArgs.builder()
+                        .bucket("my-bucketname")
+                        .build());
+*/
+
+        minioClient.uploadObject(
+                UploadObjectArgs.builder()
+                        .bucket("my-bucketname")
+                        .object("my-objectname")
+                        .filename("C:\\Users\\Alex\\Desktop\\1 лаба САП.txt")
+                        .contentType("video/mp4")
+                        .build());
+
+
+        userJPA.save(new User("0","alex", "###alise199###"));
+
+
+
+        return "ok";
+    }
+}

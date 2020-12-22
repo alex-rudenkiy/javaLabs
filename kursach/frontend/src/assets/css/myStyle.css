@@ -1,0 +1,23 @@
+.flex-fill {
+    flex:1 1 auto;
+}
+.DropZone {
+    border: 2px dashed #888;
+    border-radius: 4px; 
+    color: #aaa;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 2em;
+    cursor: pointer;
+  }
+  .DropZone:hover {
+    background-color: rgba(0, 0, 0, 0.025);
+  }
+  .DropZone:focus,
+  .DropZone--over-document {
+    border: 2px dashed #599eff;
+  }
+  .DropZone--over {
+    border: 2px dashed #259925;
+  }
