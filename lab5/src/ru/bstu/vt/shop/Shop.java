@@ -112,7 +112,7 @@ public enum Shop {
             });
         }
 
-        public Product getMostExpensiveProduct() throws ExecutionException, InterruptedException {
+        public Product getMostExpensiveProduct(){
             return mostExpensive;
         }
     }

@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 @Log
 public class Lab5 {
 
-    public static void loadProductsFromFolder(Scanner scanner, ArrayList<Product> store) throws IOException {
+    private static void loadProductsFromFolder(Scanner scanner, ArrayList<Product> store) {
         System.out.println("Введите путь к папке с данными продуктов (.csv): ");
         String dir = scanner.nextLine();
         if(!dir.equals("")) {

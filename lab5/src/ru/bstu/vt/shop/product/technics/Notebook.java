@@ -34,11 +34,11 @@ public class Notebook extends Technics {
             while (s.length()<1) s = scanner.nextLine();
             try {
 
-                HashMap hm  = RegxLib.parseParametrs(s);
-                super.cost  = Float.parseFloat((String) hm.get("цена"));
-                ramSize     = Integer.parseInt((String) hm.get("ram"));
-                hddSize     = Integer.parseInt((String) hm.get("hdd"));
-                os          = (String) hm.get("os");
+                HashMap<String, String> hm  = RegxLib.parseParametrs(s);
+                super.cost  = Float.parseFloat(hm.get("цена"));
+                ramSize     = Integer.parseInt(hm.get("ram"));
+                hddSize     = Integer.parseInt(hm.get("hdd"));
+                os          = hm.get("os");
 
                 if(os==null) throw new RequiredParameterException();
 
@@ -51,12 +51,12 @@ public class Notebook extends Technics {
     }
 
     @Override
-    public Product init(@NonNull Map hm) {
+    public Product init(@NonNull Map<String, String> hm) {
         try {
-            super.cost  = Float.parseFloat((String) hm.get("цена"));
-            ramSize     = Integer.parseInt((String) hm.get("ram"));
-            hddSize     = Integer.parseInt((String) hm.get("hdd"));
-            os          = (String) hm.get("os");
+            super.cost  = Float.parseFloat(hm.get("цена"));
+            ramSize     = Integer.parseInt(hm.get("ram"));
+            hddSize     = Integer.parseInt(hm.get("hdd"));
+            os          = hm.get("os");
 
             if(os==null) throw new RequiredParameterException();
 

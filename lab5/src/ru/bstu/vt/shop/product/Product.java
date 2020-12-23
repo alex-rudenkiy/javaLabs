@@ -22,7 +22,7 @@ public abstract class Product {
     // Считывание параметров с консоли
     public abstract void init(Scanner scanner);
 
-    public abstract Product init(@NonNull Map hm);
+    public abstract Product init(@NonNull Map<String, String> hm);
 
 
     // Определяет, можно ли купить товар за имеющуюся сумму
