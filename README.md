@@ -14,7 +14,8 @@
    * Добавлена многопоточность, см. [Shop.asyncReadFromCSVFile](https://github.com/alex-rudenkiy/javaLabs/blob/main/lab4/src/ru/bstu/vt/shop/Shop.java); 
  - [Лабораторная работа № 5](https://github.com/alex-rudenkiy/javaLabs/tree/main/lab5) (Не сдано ❌)
    * Добавлены JAVA8 фичи, такие как: `forEach()`, Lambda Expressions, `Files.walk`, `CompletableFuture`(Concurrency API);
- - Курсовая работа (Не сдано ❌) ... в процессе 🏗️
+ - [Курсовая работа](https://github.com/alex-rudenkiy/javaLabs/tree/main/kursach) (Не сдано ❌)
+   
 
 **📄 Формулировка задания (8 вариант):**
 
