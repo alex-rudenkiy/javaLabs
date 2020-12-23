@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 public class Lab3 {
 
     private static void loadProductsFromFolder(Scanner scanner, ArrayList<Product> store) {
-        System.out.println("Введите путь к папке с данными продуктов (.csv): ");
+        System.out.println("Введите ПУТЬ к папке с данными продуктов (.csv): ");
         String dir = scanner.nextLine();
         if(!dir.equals(""))
             for (File file : Objects.requireNonNull(new File(dir).listFiles()))
