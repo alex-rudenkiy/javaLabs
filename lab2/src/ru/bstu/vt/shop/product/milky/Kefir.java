@@ -31,10 +31,10 @@ public class Kefir extends Milky{
             while (s.length()<1) s = scanner.nextLine();
             try {
 
-                HashMap hm  = RegxLib.parseParametrs(s);
-                super.cost  = Float.parseFloat((String) hm.get("цена"));
-                alcohol     = Float.parseFloat((String) hm.get("спирт"));
-                additive    = (String) hm.get("добавка");
+                HashMap<String, String> hm  = RegxLib.parseParametrs(s);
+                super.cost  = Float.parseFloat(hm.get("цена"));
+                alcohol     = Float.parseFloat(hm.get("спирт"));
+                additive    = hm.get("добавка");
 
                 if(additive==null) throw new RequiredParameterException();
 

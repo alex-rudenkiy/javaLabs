@@ -26,9 +26,9 @@ public class Milk extends Milky{
             while (s.length()<1) s = scanner.nextLine();
             try {
 
-                HashMap hm  = RegxLib.parseParametrs(s);
-                super.cost  = Float.parseFloat((String) hm.get("цена"));
-                whoseMilk   = (String) hm.get("молоко");
+                HashMap<String, String> hm  = RegxLib.parseParametrs(s);
+                super.cost  = Float.parseFloat(hm.get("цена"));
+                whoseMilk   = hm.get("молоко");
 
                 if(whoseMilk==null) throw new RequiredParameterException();
 

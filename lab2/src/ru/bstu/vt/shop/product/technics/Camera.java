@@ -29,10 +29,10 @@ public class Camera extends Technics {
             while (s.length()<1) s = scanner.nextLine();
             try {
 
-                HashMap hm  = RegxLib.parseParametrs(s);
-                super.cost  = Float.parseFloat((String) hm.get("цена"));
-                matrix      = Float.parseFloat((String) hm.get("матрица"));
-                zoom        = Integer.parseInt((String) hm.get("зум"));
+                HashMap<String, String> hm  = RegxLib.parseParametrs(s);
+                super.cost  = Float.parseFloat(hm.get("цена"));
+                matrix      = Float.parseFloat(hm.get("матрица"));
+                zoom        = Integer.parseInt(hm.get("зум"));
 
             } catch (NumberFormatException e){
                 System.out.println("\tВы не корректно указали цену, матрицу или зум! Попробуйте ввести сведения о продукте заново.");

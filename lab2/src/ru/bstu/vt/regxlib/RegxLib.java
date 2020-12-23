@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class RegxLib {
 
-    public static HashMap parseParametrs(String s) throws ParseException {
+    public static HashMap<String, String> parseParametrs(String s) throws ParseException {
         HashMap<String, String> result = new HashMap<>();
         Pattern p = Pattern.compile("([^,]+)");
         Matcher m = p.matcher(s);
